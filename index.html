@@ -3,232 +3,220 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Randhir Singh — MERN Stack & React Native Developer</title>
-<meta name="description" content="Portfolio of Randhir Singh, a Full-Stack Web & Mobile Developer from New Delhi specialising in the MERN stack, React Native and TypeScript." />
+<title>Randhir Singh — Full-Stack Developer</title>
+<meta name="description" content="Randhir Singh is a full-stack developer in New Delhi who builds web and mobile apps with the MERN stack and React Native." />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='88'>R</text></svg>" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<header class="site-header" id="top">
-  <nav class="nav container" aria-label="Main navigation">
-    <a class="logo" href="#top">randhir<span>.dev</span></a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#contact" class="nav-cta">Contact</a></li>
-    </ul>
-  </nav>
-</header>
+<div class="layout">
 
-<main>
-  <!-- HERO -->
-  <section class="hero container">
-    <p class="hero-eyebrow reveal">👋 Hi, I'm</p>
-    <h1 class="reveal">Randhir Singh</h1>
-    <h2 class="hero-role reveal">I build <span class="typed" id="typed"></span><span class="caret">|</span></h2>
-    <p class="hero-sub reveal">
-      Full-Stack Web &amp; Mobile Developer from New Delhi, specialising in the
-      <strong>MERN stack</strong>, <strong>React Native</strong> and <strong>TypeScript</strong>.
-      Currently developing a gym-management platform used by gyms across India.
-    </p>
-    <div class="hero-actions reveal">
-      <a class="btn btn-primary" href="#projects">View my projects</a>
-      <a class="btn btn-ghost" href="https://github.com/randhirsingh77" target="_blank" rel="noopener">GitHub ↗</a>
+  <!-- ============ LEFT: sticky intro ============ -->
+  <header class="sidebar">
+    <div class="sidebar-top">
+      <p class="hello">Hi, my name is</p>
+      <h1>Randhir Singh</h1>
+      <h2>Full-stack developer — MERN &amp; React Native</h2>
+      <p class="intro">
+        I build web and mobile apps for real businesses. Right now I spend most of
+        my day on a gym-management platform that gym owners across India use to run
+        their memberships, staff and payments.
+      </p>
+      <p class="location">New Delhi, India · Open to MERN / React Native roles</p>
+
+      <nav class="side-nav" aria-label="Sections">
+        <a href="#about" class="side-link active"><span class="line"></span>About</a>
+        <a href="#experience" class="side-link"><span class="line"></span>Experience</a>
+        <a href="#projects" class="side-link"><span class="line"></span>Projects</a>
+        <a href="#contact" class="side-link"><span class="line"></span>Contact</a>
+      </nav>
     </div>
-    <ul class="hero-stats reveal">
-      <li><strong>B.Tech CSE</strong><span>2021 – 2025</span></li>
-      <li><strong>MERN + RN</strong><span>Full-stack &amp; mobile</span></li>
-      <li><strong>New Delhi</strong><span>Open to roles</span></li>
-    </ul>
-  </section>
 
-  <!-- ABOUT -->
-  <section class="section container" id="about">
-    <h3 class="section-title reveal"><span>01.</span> About me</h3>
-    <div class="about-grid">
-      <div class="reveal">
-        <p>
-          I'm a Computer Science graduate and full-stack developer who enjoys turning
-          real business problems into working products. My day-to-day work is building a
-          <strong>gym-management platform</strong> — authentication with WhatsApp OTP, multi-gym
-          roles, membership plans, attendance, staff and inventory — with a React Native
-          front end and an Express + MongoDB API.
-        </p>
-        <p>
-          Before that, I completed a MERN stack internship at <strong>QSpiders</strong>, where I
-          built full-stack projects including a complete learning management system.
-          I'm now also learning <strong>AI product engineering</strong> — building AI features
-          into real products.
-        </p>
-      </div>
-      <div class="about-card reveal">
-        <h4>Quick facts</h4>
-        <ul>
-          <li>🎓 B.Tech, Computer Science — IKGPTU, Kapurthala</li>
-          <li>📍 Based in New Delhi, India</li>
-          <li>💼 MERN Stack Intern — QSpiders (2025–26)</li>
-          <li>🌱 Currently learning AI product engineering</li>
-          <li>🎯 Open to MERN / React Native roles in New Delhi</li>
-        </ul>
-      </div>
+    <div class="sidebar-bottom">
+      <a href="https://github.com/randhirsingh77" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 1.28 1.09 0 2.2 0 1.6-.01 1.09-.01 2.2 0 .27.18.58-.7.06-1.42C20.71 21.39 24 17.08 24 12c0-6.35-5.15-11.5-12-11.5Z"/></svg>
+      </a>
+      <a href="mailto:rs6201849307@gmail.com" aria-label="Email">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+      </a>
+      <a class="resume-link" href="https://www.naukri.com/mnjuser/profile" target="_blank" rel="noopener">Naukri profile</a>
     </div>
-  </section>
+  </header>
 
-  <!-- SKILLS -->
-  <section class="section container" id="skills">
-    <h3 class="section-title reveal"><span>02.</span> Skills</h3>
-    <div class="skills-grid">
-      <div class="skill-group reveal">
-        <h4>Frontend</h4>
-        <div class="chips">
-          <span class="chip">React</span><span class="chip">React Native</span>
-          <span class="chip">TypeScript</span><span class="chip">JavaScript</span>
-          <span class="chip">HTML5</span><span class="chip">CSS3</span>
-          <span class="chip">Redux Toolkit</span><span class="chip">Tailwind CSS</span>
-        </div>
-      </div>
-      <div class="skill-group reveal">
-        <h4>Backend</h4>
-        <div class="chips">
-          <span class="chip">Node.js</span><span class="chip">Express</span>
-          <span class="chip">REST APIs</span><span class="chip">JWT Auth</span>
-          <span class="chip">MongoDB</span><span class="chip">Mongoose</span>
-        </div>
-      </div>
-      <div class="skill-group reveal">
-        <h4>Tools &amp; Workflow</h4>
-        <div class="chips">
-          <span class="chip">Git &amp; GitHub</span><span class="chip">Expo</span>
-          <span class="chip">Zustand</span><span class="chip">Postman</span>
-          <span class="chip">VS Code</span>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- ============ RIGHT: content ============ -->
+  <main class="content">
 
-  <!-- PROJECTS -->
-  <section class="section container" id="projects">
-    <h3 class="section-title reveal"><span>03.</span> Projects</h3>
-    <div class="projects-grid">
+    <section id="about" class="section">
+      <h3 class="section-label">About</h3>
+      <p>
+        I'm a Computer Science graduate (B.Tech, IKGPTU Kapurthala, 2021–2025) and a
+        full-stack developer based in New Delhi. I like working on products that
+        people actually depend on every day — not demo apps.
+      </p>
+      <p>
+        At work I develop <strong>Pehlwan</strong>, a gym-management platform. The app
+        handles the unglamorous but important stuff: owners and trainers log in with a
+        WhatsApp OTP, members check their plans and attendance, and gym owners manage
+        staff, inventory and subscriptions across multiple branches. My part of it is
+        the React Native app and the Express + MongoDB API behind it. It's a
+        commercial product, so the code stays private — but it's where most of my
+        recent engineering has happened.
+      </p>
+      <p>
+        Before that I did a MERN stack internship at <strong>QSpiders</strong>, where I
+        built a complete learning management system from scratch — course publishing,
+        payments, progress tracking and an admin dashboard. These days I'm also
+        learning how to build AI features into products like these.
+      </p>
+      <p>Things I work with most of the time:</p>
+      <ul class="tech-list">
+        <li>React &amp; React Native</li>
+        <li>TypeScript / JavaScript</li>
+        <li>Node.js &amp; Express</li>
+        <li>MongoDB &amp; Mongoose</li>
+        <li>Redux Toolkit &amp; Zustand</li>
+        <li>REST APIs &amp; JWT auth</li>
+        <li>Expo</li>
+        <li>Git &amp; GitHub</li>
+      </ul>
+    </section>
 
-      <article class="project-card reveal">
-        <div class="project-cover cover-lms"><span>LMS</span></div>
-        <div class="project-body">
-          <h4>Learning Management System</h4>
+    <section id="experience" class="section">
+      <h3 class="section-label">Experience</h3>
+
+      <article class="entry">
+        <p class="entry-when">Sep 2026 — Present</p>
+        <div class="entry-body">
+          <h4>Mobile App Developer · Gym-management platform</h4>
           <p>
-            A full-stack LMS where instructors publish courses with video lectures and
-            students purchase, watch and track progress. Admin dashboard, role-based
-            access, rich-text course editor and purchase flow.
+            Building and maintaining a production React Native (Expo) app and its
+            Express/MongoDB backend. Recent work: WhatsApp OTP login, multi-gym roles
+            with owner approvals, membership plans and renewals, attendance, staff and
+            inventory modules — with a Hindi interface for gym staff.
           </p>
-          <ul class="tags">
-            <li>React</li><li>Redux Toolkit</li><li>Node.js</li>
-            <li>Express</li><li>MongoDB</li><li>Tailwind</li>
-          </ul>
-          <div class="project-links">
-            <a href="https://github.com/randhirsingh77/lms" target="_blank" rel="noopener">GitHub ↗</a>
-          </div>
+          <p class="entry-tech">React Native · TypeScript · Node.js · MongoDB · Zustand</p>
         </div>
       </article>
 
-      <article class="project-card reveal">
-        <div class="project-cover cover-food"><span>Food</span></div>
-        <div class="project-body">
-          <h4>Food Delivery Website</h4>
+      <article class="entry">
+        <p class="entry-when">Feb 2025 — Jan 2026</p>
+        <div class="entry-body">
+          <h4>MERN Stack Intern · QSpiders</h4>
           <p>
-            A static food-delivery website with a photo menu and gallery sections —
-            a front-end fundamentals project built with semantic HTML and modern CSS,
-            fully responsive.
+            Full-stack training and project work in MongoDB, Express, React and
+            Node.js. Built a full learning management system as the main project,
+            including authentication, course and lecture management, purchases and
+            an admin dashboard.
           </p>
-          <ul class="tags">
-            <li>HTML5</li><li>CSS3</li><li>Responsive Design</li>
-          </ul>
-          <div class="project-links">
-            <a href="https://github.com/randhirsingh77/Food-Delivery" target="_blank" rel="noopener">GitHub ↗</a>
-          </div>
+          <p class="entry-tech">React · Redux Toolkit · Express · MongoDB · Tailwind CSS</p>
         </div>
       </article>
 
-      <article class="project-card reveal">
-        <div class="project-cover cover-portfolio"><span>folio</span></div>
-        <div class="project-body">
-          <h4>Portfolio Website</h4>
-          <p>
-            This website — a hand-built, fully responsive personal portfolio with a
-            dark theme, scroll animations and a typewriter hero. No frameworks,
-            no build step; just clean HTML, CSS and JavaScript, hosted on GitHub Pages.
-          </p>
-          <ul class="tags">
-            <li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>GitHub Pages</li>
-          </ul>
-          <div class="project-links">
-            <a href="https://github.com/randhirsingh77/portfolio" target="_blank" rel="noopener">GitHub ↗</a>
-          </div>
-        </div>
-      </article>
-
-    </div>
-    <p class="work-note reveal">
-      💼 At work, I develop <strong>Pehlwan</strong>, a gym-management platform for Indian gyms
-      (React Native + TypeScript, Express + MongoDB, Hindi UI) — a commercial product,
-      so its code isn't public, but it's where most of my recent engineering has happened.
-    </p>
-  </section>
-
-  <!-- EXPERIENCE -->
-  <section class="section container" id="experience">
-    <h3 class="section-title reveal"><span>04.</span> Experience &amp; education</h3>
-    <div class="timeline">
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div>
-          <h4>Mobile App Developer — Gym-management product <span class="when">Sep 2026 – Present</span></h4>
-          <p>Developing a production gym-management app and API: WhatsApp OTP auth, multi-gym
-             roles with owner approvals, subscriptions, attendance, inventory and expenses.
-             React Native (Expo) + TypeScript, Express + MongoDB.</p>
-        </div>
-      </div>
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div>
-          <h4>MERN Stack Intern — QSpiders <span class="when">Feb 2025 – Jan 2026</span></h4>
-          <p>Full-stack development training and project work in MongoDB, Express, React and
-             Node.js, including a complete learning management system.</p>
-        </div>
-      </div>
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div>
-          <h4>B.Tech, Computer Science — IKGPTU Kapurthala <span class="when">2021 – 2025</span></h4>
+      <article class="entry">
+        <p class="entry-when">2021 — 2025</p>
+        <div class="entry-body">
+          <h4>B.Tech, Computer Science · IKGPTU, Kapurthala</h4>
           <p>Bachelor of Technology in Computer Science and Engineering.</p>
         </div>
-      </div>
-    </div>
-  </section>
+      </article>
+    </section>
 
-  <!-- CONTACT -->
-  <section class="section container contact" id="contact">
-    <h3 class="section-title reveal"><span>05.</span> Contact</h3>
-    <p class="reveal">I'm open to MERN stack and React Native roles in New Delhi.
-       The fastest way to reach me is through GitHub or Naukri.</p>
-    <div class="hero-actions reveal">
-      <a class="btn btn-primary" href="https://github.com/randhirsingh77" target="_blank" rel="noopener">github.com/randhirsingh77 ↗</a>
-    </div>
-  </section>
-</main>
+    <section id="projects" class="section">
+      <h3 class="section-label">Projects</h3>
 
-<footer class="site-footer">
-  <p>© <span id="year"></span> Randhir Singh · Built with HTML, CSS &amp; JavaScript ·
-     <a href="https://github.com/randhirsingh77/portfolio" target="_blank" rel="noopener">Source</a></p>
-</footer>
+      <article class="entry project">
+        <p class="entry-when">2025</p>
+        <div class="entry-body">
+          <h4>
+            <a href="https://github.com/randhirsingh77/lms" target="_blank" rel="noopener">Learning Management System <span class="arrow">↗</span></a>
+          </h4>
+          <p>
+            A full-stack LMS built during my internship. Instructors create courses
+            and upload video lectures; students buy courses, watch them and track
+            their progress. Includes role-based access, a rich-text course editor
+            and an admin dashboard.
+          </p>
+          <p class="entry-tech">React · Redux Toolkit · Node.js · Express · MongoDB</p>
+        </div>
+      </article>
+
+      <article class="entry project">
+        <p class="entry-when">2025</p>
+        <div class="entry-body">
+          <h4>
+            <a href="https://github.com/randhirsingh77/Food-Delivery" target="_blank" rel="noopener">Food Delivery Website <span class="arrow">↗</span></a>
+          </h4>
+          <p>
+            A small front-end project — a food-delivery site with a photo menu and
+            gallery, built with semantic HTML and modern CSS only. Fully responsive.
+            This one was about getting the fundamentals right.
+          </p>
+          <p class="entry-tech">HTML5 · CSS3</p>
+        </div>
+      </article>
+
+      <article class="entry project">
+        <p class="entry-when">2026</p>
+        <div class="entry-body">
+          <h4>
+            <a href="https://github.com/randhirsingh77/portfolio" target="_blank" rel="noopener">This website <span class="arrow">↗</span></a>
+          </h4>
+          <p>
+            My portfolio. Plain HTML, CSS and JavaScript — no framework, no build
+            step — hosted on GitHub Pages.
+          </p>
+          <p class="entry-tech">HTML · CSS · JavaScript · GitHub Pages</p>
+        </div>
+      </article>
+    </section>
+
+    <section id="contact" class="section">
+      <h3 class="section-label">Contact</h3>
+      <h4 class="contact-heading">Get in touch</h4>
+      <p>
+        I'm looking for MERN stack and React Native roles in New Delhi. If you have
+        an opening, a project, or just a question about something I built, send me a
+        message — I usually reply within a day.
+      </p>
+      <p class="direct-mail">Or write to me directly at
+        <a href="mailto:rs6201849307@gmail.com">rs6201849307@gmail.com</a>
+      </p>
+
+      <form id="contactForm" class="contact-form" action="https://formsubmit.co/rs6201849307@gmail.com" method="POST">
+        <!-- FormSubmit settings -->
+        <input type="hidden" name="_subject" value="New message from your portfolio website" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off" />
+
+        <label>
+          Your name
+          <input type="text" name="name" required placeholder="e.g. Priya Sharma" />
+        </label>
+        <label>
+          Your email
+          <input type="email" name="email" required placeholder="you@example.com" />
+        </label>
+        <label>
+          Message
+          <textarea name="message" rows="5" required placeholder="Hi Randhir, ..."></textarea>
+        </label>
+        <button type="submit" id="sendBtn">Send message</button>
+        <p class="form-status" id="formStatus" role="status"></p>
+      </form>
+    </section>
+
+    <footer class="footer">
+      <p>© <span id="year"></span> Randhir Singh · New Delhi ·
+        <a href="https://github.com/randhirsingh77/portfolio" target="_blank" rel="noopener">Source on GitHub</a>
+      </p>
+    </footer>
+
+  </main>
+</div>
 
 <script src="script.js"></script>
 </body>
