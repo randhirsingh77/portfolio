@@ -54,3 +54,35 @@ form.addEventListener("submit", async (e) => {
     sendBtn.textContent = "Send message";
   }
 });
+
+// Cursor spotlight (desktop pointers only)
+const spotlight = document.getElementById("spotlight");
+if (spotlight && window.matchMedia("(pointer: fine)").matches &&
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  let ticking = false;
+  window.addEventListener("mousemove", (e) => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      spotlight.style.setProperty("--mx", e.clientX + "px");
+      spotlight.style.setProperty("--my", e.clientY + "px");
+      ticking = false;
+    });
+  });
+} else if (spotlight) {
+  spotlight.remove();
+}
+
+// Gentle reveal as sections scroll into view
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("in");
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.08 }
+);
+document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
