@@ -88,6 +88,8 @@ a:hover { text-decoration: underline; }
 .sidebar-bottom a { color: var(--muted); display: inline-flex; }
 .sidebar-bottom a:hover { color: var(--accent); text-decoration: none; }
 .resume-link { font-size: .9rem; font-weight: 500; }
+.naukri-link { opacity: .85; transition: opacity .2s ease; }
+.naukri-link:hover { opacity: 1; }
 
 /* ---------- Content ---------- */
 .content { padding: 5.5rem 0 3rem; }
