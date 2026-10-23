@@ -220,3 +220,35 @@ a:hover { text-decoration: underline; }
   .entry { grid-template-columns: 1fr; gap: .2rem; padding: .9rem .8rem; margin: 0 -.8rem .8rem; }
   .entry:hover { background: transparent; }
 }
+
+/* ---------- Subtle motion (reference-site style) ---------- */
+.spotlight {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(560px circle at var(--mx, 50%) var(--my, -10%),
+    rgba(111, 211, 167, .07), transparent 65%);
+}
+.layout { position: relative; z-index: 1; }
+
+.js .reveal {
+  opacity: 0; transform: translateY(14px);
+  transition: opacity .55s ease, transform .55s ease;
+}
+.js .reveal.in { opacity: 1; transform: none; }
+
+/* Animated underline for inline content links */
+.section p a, .footer p a {
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  padding-bottom: 1px;
+  transition: background-size .3s ease;
+}
+.section p a:hover, .footer p a:hover { background-size: 100% 1px; text-decoration: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+  .spotlight { display: none; }
+  html { scroll-behavior: auto; }
+}
