@@ -232,6 +232,10 @@ a:hover { text-decoration: underline; }
 /* Case-study link inside project entries */
 .cs-link { font-size: .9rem; font-weight: 500; }
 
+/* Demo buttons inside project entries */
+.demo-actions { margin: .7rem 0 .3rem !important; }
+.demo-note { font-size: .82rem !important; color: var(--muted); margin-bottom: .5rem !important; }
+
 /* ---------- Footer ---------- */
 .footer { border-top: 1px solid var(--border); padding-top: 1.4rem; }
 .footer p { color: var(--muted); font-size: .85rem; }
