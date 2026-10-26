@@ -210,6 +210,29 @@
         <p class="entry-when">2026</p>
         <div class="entry-body">
           <h4>
+            <a href="https://github.com/randhirsingh77/ask-randhir" target="_blank" rel="noopener">Ask Randhir — AI portfolio assistant <span class="arrow">↗</span></a>
+          </h4>
+          <p>
+            An AI assistant that answers questions about me — my skills,
+            projects and experience — and politely refuses everything else.
+            It runs on a Cloudflare Worker with a free-tier LLM grounded in a
+            knowledge file and layered guardrails (scope rules, a code-level
+            filter, rate limits), so no API key ever reaches the browser. On
+            this page it is the "Ask Randhir" chat panel at the bottom-right;
+            it also lives as a full-page assistant at its own link.
+          </p>
+          <p class="demo-actions">
+            <a class="btn" href="https://ask-randhir.YOUR-CLOUDFLARE-SUBDOMAIN.workers.dev/chat" target="_blank" rel="noopener">Open the full-page assistant ↗</a>
+          </p>
+          <p class="demo-note">The standalone link activates the moment the assistant is deployed — a short owner step described in the repo README.</p>
+          <p class="entry-tech">Cloudflare Workers · JavaScript · Gemini API · Groq</p>
+        </div>
+      </article>
+
+      <article class="entry project">
+        <p class="entry-when">2026</p>
+        <div class="entry-body">
+          <h4>
             <a href="https://github.com/randhirsingh77/portfolio" target="_blank" rel="noopener">This website <span class="arrow">↗</span></a>
           </h4>
           <p>
@@ -278,5 +301,9 @@
 </div>
 
 <script src="script.js"></script>
+<!-- Ask Randhir widget: if the deployed Worker URL differs, change ONLY the next line. -->
+<script>window.ASK_RANDHIR_API = "https://ask-randhir.YOUR-CLOUDFLARE-SUBDOMAIN.workers.dev/api/chat";</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/randhirsingh77/ask-randhir@main/public/chat.css" />
+<script src="https://cdn.jsdelivr.net/gh/randhirsingh77/ask-randhir@main/public/chat.js" data-mode="widget" defer></script>
 </body>
 </html>
