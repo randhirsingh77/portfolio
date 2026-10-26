@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Foodie — Case Study · Randhir Singh</title>
+<meta name="description" content="Case study: Foodie, a full-stack food-delivery platform with role-based dashboards, live order tracking and its own auth system." />
+<meta name="theme-color" content="#0e141d" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Foodie — Case Study" />
+<meta property="og:description" content="A full-stack food-delivery platform: customers, kitchen, drivers and owner analytics on one system." />
+<script>document.documentElement.classList.add("js");</script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='88'>R</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="spotlight" id="spotlight" aria-hidden="true"></div>
+
+<main class="cs">
+  <p class="cs-back"><a href="index.html#projects">← Back to projects</a></p>
+
+  <p class="cs-kicker">Case study</p>
+  <h1>Foodie — a food-delivery platform, end to end</h1>
+  <p class="cs-meta">React · TypeScript · Node.js · Express · MongoDB · Live on Render</p>
+
+  <div class="cs-actions">
+    <a class="btn" href="https://foodie-tvna.onrender.com" target="_blank" rel="noopener">Live demo ↗</a>
+    <a class="btn btn-ghost" href="https://github.com/randhirsingh77/Food-Delivery" target="_blank" rel="noopener">Frontend repo ↗</a>
+    <a class="btn btn-ghost" href="https://github.com/randhirsingh77/foodie-server" target="_blank" rel="noopener">Backend repo ↗</a>
+  </div>
+
+  <h2>The problem</h2>
+  <p>
+    A food-delivery service is not one app — it is four, sharing one stream of orders.
+    Customers browse a menu and order. The kitchen works a queue and controls what is
+    in stock. Drivers pick up orders and deliver them. The owner watches sales. Most
+    portfolio food apps stop at the menu and a cart. Foodie was built to run the whole
+    loop: an order placed by a customer is prepared by the kitchen, picked up by a
+    driver, tracked live by the customer, and counted in the owner's dashboard.
+  </p>
+
+  <h2>Constraints</h2>
+  <ul>
+    <li><strong>Free hosting only.</strong> The backend runs on Render's free tier, which sleeps when idle and takes up to ~50 seconds to wake. The design has to survive that, not pretend it away.</li>
+    <li><strong>No paid services.</strong> There is no budget for SMS OTPs or payment gateways, so sign-up is email/phone + password, and delivery pay is a clearly labelled demo credit.</li>
+    <li><strong>One developer.</strong> Every feature has to be maintainable by one person, which rules out infrastructure that needs babysitting.</li>
+  </ul>
+
+  <h2>Architecture</h2>
+  <p>
+    Two repositories: a React + TypeScript frontend (Zustand for state) and an
+    Express + MongoDB backend with a proper folder structure
+    (<code>config / models / routes / controllers / middleware / utils</code>).
+  </p>
+  <ul>
+    <li><strong>The server is the money source of truth.</strong> Every order total is recomputed on the server from its own price list — a browser claiming a dish costs ₹1 still gets charged the real price. Promo rules (FOODIE50: 50% off up to ₹100 above ₹299; free delivery above ₹499 after discount) live in exactly one function on each side, and they agree.</li>
+    <li><strong>Idempotent ordering.</strong> Each order carries a client-generated ID that is unique in the database; a retried submission returns the original order instead of duplicating it.</li>
+    <li><strong>One lifecycle, role-checked.</strong> Orders move received → preparing → packing → on the way → delivered, and each step can only be advanced by the role that owns it (kitchen, then the assigned driver). Delivery credits the driver a ₹40 demo earning; the customer can then rate the driver, which updates a running average.</li>
+    <li><strong>Live tracking by polling.</strong> The tracking screen polls every 4 seconds and interpolates the rider's position between the restaurant and the delivery point over the ride window, with an ETA while the order is on the way.</li>
+    <li><strong>Its own auth.</strong> Register/login with email or phone + password (bcrypt, JWT valid 7 days), forgot/change password, and Google sign-in. Role-based dashboards for customer, admin/owner, manager and driver sit behind it.</li>
+    <li><strong>A demo dataset behind the same API.</strong> The frontend talks to one typed API interface with two implementations: the real HTTP client, and a full in-browser demo dataset. Every screen works even while the free backend is asleep.</li>
+  </ul>
+
+  <h2>Trade-offs I made</h2>
+  <ul>
+    <li><strong>Polling instead of websockets.</strong> Sockets would give smoother tracking, but free-tier services spin down and drop connections; 4-second polling is simple, honest, and survives restarts. The tracking still feels live because the rider position is interpolated between polls.</li>
+    <li><strong>Own auth instead of a hosted provider.</strong> The site started on a hosted auth provider. Replacing it with my own JWT system removed a vendor dependency and a second user database to keep in sync — at the cost of owning password security, which is why passwords are bcrypt-hashed and never stored or transmitted anywhere else.</li>
+    <li><strong>Server-side pricing instead of trusting the cart.</strong> Slightly more work on every order endpoint, but a tampered client can never change what it pays.</li>
+  </ul>
+
+  <h2>What broke</h2>
+  <ul>
+    <li><strong>A header that grew until it ate the page.</strong> A script measured the fixed header's height and wrote it into a CSS variable that the header's own minimum height depended on. Each measurement made the header 1px taller, which triggered another measurement — about +1px per animation frame, forever. The fix was to delete the whole measuring mechanism and anchor overlays to the header's real bottom edge at the moment they open.</li>
+    <li><strong>The search panel hiding behind the header on phones.</strong> Same root cause family: the panel was positioned from a guessed header height, but on narrow phones the header wraps to two rows and is taller than the guess. Positioning from the measured edge, at open time, fixed it for every width.</li>
+    <li><strong>Live tests that "failed" while everything worked.</strong> The first full live test run reported ten failed checks — all on fixed short waits, because the sleeping backend's first response took ~50 seconds. Checking the end state in the database proved every step had actually completed: the order went through kitchen and driver to delivered, and the driver was credited and rated. Lesson: on free hosting, judge a flow by its end state, not its first paint.</li>
+  </ul>
+
+  <h2>Result</h2>
+  <p>
+    Foodie is live and works end to end: sign up, order, watch the kitchen work the
+    queue, track the rider on a map, get delivered, rate the driver — while the owner
+    sees the sale in analytics. The backend carries an automated smoke suite (41
+    checks) that boots the real app against an in-memory database and verifies the
+    money maths exactly — for example Pasta ×3 with FOODIE50 must total ₹650, not
+    approximately. A keep-alive ping every 14 minutes during the day keeps the free
+    backend awake inside its free instance hours.
+  </p>
+
+  <div class="cs-actions">
+    <a class="btn" href="https://foodie-tvna.onrender.com" target="_blank" rel="noopener">Live demo ↗</a>
+    <a class="btn btn-ghost" href="https://github.com/randhirsingh77/Food-Delivery" target="_blank" rel="noopener">Frontend repo ↗</a>
+    <a class="btn btn-ghost" href="https://github.com/randhirsingh77/foodie-server" target="_blank" rel="noopener">Backend repo ↗</a>
+  </div>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Randhir Singh · New Delhi ·
+      <a href="index.html#projects">All projects</a>
+    </p>
+  </footer>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

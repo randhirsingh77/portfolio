@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sarthi — Design Case Study · Randhir Singh</title>
+<meta name="description" content="Design case study: Sarthi, a scoped AI chat app for Indian students and job-seekers — scope, architecture decisions and what was deliberately cut." />
+<meta name="theme-color" content="#0e141d" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Sarthi — Design Case Study" />
+<meta property="og:description" content="A scoped, original AI chat app for Indian students and job-seekers. Currently at design stage — scope and architecture decisions documented here." />
+<script>document.documentElement.classList.add("js");</script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='88'>R</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="spotlight" id="spotlight" aria-hidden="true"></div>
+
+<main class="cs">
+  <p class="cs-back"><a href="index.html#projects">← Back to projects</a></p>
+
+  <p class="cs-kicker">Design case study · not yet built</p>
+  <h1>Sarthi — an AI chat app for Indian students and job-seekers</h1>
+  <p class="cs-meta">Planned stack: React · TypeScript · Node.js · Express · MongoDB · Server-sent events</p>
+
+  <div class="cs-actions">
+    <a class="btn btn-ghost" href="https://github.com/randhirsingh77/sarthi" target="_blank" rel="noopener">Repo ↗</a>
+  </div>
+
+  <h2>Status, honestly</h2>
+  <p>
+    Sarthi is at the <strong>design stage</strong>. The scope, feature list and
+    architecture below are decided and documented in the repository; the application
+    itself is not built yet, so there are no usage numbers or screenshots to show.
+    This page exists because the scoping decisions are the interesting engineering
+    work so far — what to build, what to copy nothing from, and what to deliberately
+    leave out.
+  </p>
+
+  <h2>The problem</h2>
+  <p>
+    General AI chat apps answer everyone the same way. Indian students and
+    job-seekers ask differently: they prepare for specific exams, practise for
+    specific interviews, paste job descriptions they are applying to, and often
+    understand a concept best when it is explained in Hinglish. They also care what
+    each conversation costs. Sarthi is scoped around those jobs, not around being
+    another generic chat box.
+  </p>
+
+  <h2>How the scope was chosen</h2>
+  <p>
+    The reference point is <strong>LibreChat</strong>, a widely used open-source AI
+    chat application (MIT licensed, built on a MERN-style stack). It was studied the
+    way you study any mature product: which features exist, how the architecture is
+    organised, where the complexity lives. Sarthi takes feature and architecture
+    references from it — and nothing else. The code will be original, scoped to a
+    fraction of LibreChat's surface, because a solo developer shipping a clone of a
+    huge project ships nothing.
+  </p>
+
+  <h2>Planned architecture</h2>
+  <ul>
+    <li><strong>Familiar ground:</strong> React + TypeScript frontend, Express + MongoDB backend, JWT authentication — the same stack as my other products, so the effort goes into the AI behaviour, not new plumbing.</li>
+    <li><strong>Streaming answers</strong> over server-sent events, with markdown rendering in the chat UI and full conversation CRUD (create, rename, search, delete).</li>
+    <li><strong>Provider adapters, not provider lock-in.</strong> Model calls sit behind small adapters (Gemini, Groq, OpenRouter — all with free tiers), so a model can be swapped or routed without touching the chat logic. API keys live server-side only, never in the browser.</li>
+    <li><strong>Cost as a first-class value:</strong> every conversation tracks token usage and its approximate cost in rupees, shown to the user — the data that makes smart routing (below) possible.</li>
+  </ul>
+
+  <h2>The differentiators in scope</h2>
+  <ul>
+    <li><strong>Resume vs job description:</strong> paste both, get a gap analysis against that specific posting.</li>
+    <li><strong>Mock interview mode:</strong> the app interviews you for a role, one question at a time, and reviews your answers at the end.</li>
+    <li><strong>Exam-answer modes:</strong> answers shaped the way examiners expect — structured, to the marks, instead of chat-style essays.</li>
+    <li><strong>Hinglish explanations ("Samjhao"):</strong> any answer re-explained in simple Hinglish.</li>
+    <li><strong>Cost-aware routing:</strong> pick the cheapest model that is good enough for the task, using the tracked per-conversation cost.</li>
+  </ul>
+
+  <h2>What was deliberately cut</h2>
+  <p>
+    A written cut list keeps a solo project shippable. Out of scope for v1: real
+    retrieval-augmented search over documents, agent/tool frameworks, a code
+    interpreter, image generation, single sign-on, and an admin panel. Each is named
+    in the repository README as a cut, not an oversight — if Sarthi grows, they are
+    the roadmap, in roughly that order of value.
+  </p>
+
+  <h2>Result so far</h2>
+  <p>
+    A scoped, documented design: essentials list, differentiator list, cut list, and
+    an architecture that reuses a proven stack with provider adapters and rupee cost
+    tracking designed in from the start. The build comes next; this page will be
+    updated with what actually shipped — and what changed from the plan — once it does.
+  </p>
+
+  <div class="cs-actions">
+    <a class="btn btn-ghost" href="https://github.com/randhirsingh77/sarthi" target="_blank" rel="noopener">Repo ↗</a>
+  </div>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Randhir Singh · New Delhi ·
+      <a href="index.html#projects">All projects</a>
+    </p>
+  </footer>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

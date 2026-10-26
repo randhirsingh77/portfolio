@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Learning Management System — Case Study · Randhir Singh</title>
+<meta name="description" content="Case study: a full-stack learning management system with course publishing, Stripe payments, progress tracking and an admin dashboard." />
+<meta name="theme-color" content="#0e141d" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Learning Management System — Case Study" />
+<meta property="og:description" content="Instructors publish video courses; students buy, watch and track progress. Built with React, Redux Toolkit, Express and MongoDB." />
+<script>document.documentElement.classList.add("js");</script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='88'>R</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="spotlight" id="spotlight" aria-hidden="true"></div>
+
+<main class="cs">
+  <p class="cs-back"><a href="index.html#projects">← Back to projects</a></p>
+
+  <p class="cs-kicker">Case study</p>
+  <h1>Learning Management System</h1>
+  <p class="cs-meta">React · Redux Toolkit · Node.js · Express · MongoDB · Stripe · Live on Vercel + Render</p>
+
+  <div class="cs-actions">
+    <a class="btn" href="https://lms-seven-gold.vercel.app/" target="_blank" rel="noopener">Live demo ↗</a>
+    <a class="btn btn-ghost" href="https://github.com/randhirsingh77/lms" target="_blank" rel="noopener">Repo ↗</a>
+  </div>
+
+  <h2>The problem</h2>
+  <p>
+    An online course platform has two customers with opposite needs. Instructors need
+    to create courses, upload video lectures, price them and see how they sell.
+    Students need to browse, buy safely, watch, and pick up exactly where they left
+    off. Underneath both sits the part that actually matters: money and access control.
+    A student who has not paid must never be able to watch a lecture, and a paid
+    student must never be stuck outside a course they own.
+  </p>
+
+  <h2>Constraints</h2>
+  <ul>
+    <li><strong>Free tiers everywhere.</strong> Frontend on Vercel, backend on Render's free tier — which sleeps when idle, a fact that ends up shaping the payment design below.</li>
+    <li><strong>Real payments, safely.</strong> Stripe handles the card flow (test mode while developing); this code never touches card numbers, but it fully owns what happens after Stripe says "paid".</li>
+    <li><strong>Video is heavy.</strong> Lectures are hosted on Cloudinary so neither the repo nor the database carries media files.</li>
+  </ul>
+
+  <h2>Architecture</h2>
+  <ul>
+    <li><strong>Client:</strong> React + Redux Toolkit, with RTK Query API slices per domain (user, course, purchase, progress, media). The router separates public pages, student pages and the admin area; the footer shows only on public/student pages.</li>
+    <li><strong>Server:</strong> Express (ESM) with routers mounted per domain under <code>/api/v1/</code>, plus helmet, a global rate limiter and input sanitisation. Models cover users, courses, lectures, purchases and per-lecture progress.</li>
+    <li><strong>Access control is enforced on the server, per request.</strong> Course reads check ownership/enrolment; lecture video URLs are only returned to buyers and owners; progress endpoints answer only the enrolled student; public payloads are built field-by-field so internal data (like the list of enrolled students' IDs) never leaks into a response.</li>
+    <li><strong>Payments complete through one shared helper.</strong> Stripe checkout → a <code>completePurchase()</code> function performs the enrolment steps. Both the Stripe webhook and the verify-on-return endpoint (below) call it, so the two paths can never drift apart, and racing them is safe because completion is idempotent.</li>
+  </ul>
+
+  <h2>Trade-offs I made</h2>
+  <ul>
+    <li><strong>Verify-on-return in addition to the webhook.</strong> The standard design trusts the webhook alone. On a sleeping free-tier server that breaks (see below), so the success URL carries the checkout session ID back, and the progress page asks the server to confirm that session with Stripe directly — checking that the session belongs to the signed-in user before enrolling. The webhook stays as the backstop for buyers who close the tab.</li>
+    <li><strong>Upload first, delete later.</strong> Profile photos and course thumbnails upload the new asset first and delete the old one only after success, saving the text edits regardless — a failed upload reports its own specific error instead of throwing away the whole edit.</li>
+    <li><strong>Stateless JWT sessions.</strong> Simple and scalable; the accepted cost is that logout does not invalidate a token server-side. That is documented as a known limitation rather than hidden.</li>
+  </ul>
+
+  <h2>What broke</h2>
+  <ul>
+    <li><strong>"Confirming your payment…" forever.</strong> After paying, the course page polled for about 10 seconds waiting for the webhook to land. But the webhook was arriving at a sleeping server that needed ~50 seconds to wake, and Stripe's retries are spaced far apart — so enrolment landed long after the page gave up. Probing the live webhook endpoint showed it was healthy and fast when awake (signature verified, ~0.4s), which isolated the problem to the wake-up race. The verify-on-return design above fixed it: enrolment now lands about a second after returning from Stripe.</li>
+    <li><strong>Fixes that were live in code but not on the server.</strong> For days the live site behaved as if finished fixes did not exist: the frontend redeployed on every push, but the backend service silently did not, so new UI talked to an old API (one visible symptom: instructor sign-up "failed" yet created a student account — the old server ignored the role). The lesson, now a standing rule: probe the live service and identify its deployed build before diagnosing any live bug from repository code.</li>
+    <li><strong>A roster leak in a "fixed" payload.</strong> The enrolled-students buyer-ID list was stripped from one endpoint and later found still present in two others (course detail with status, and course-by-ID). It is now stripped everywhere, replaced by a simple enrolled count.</li>
+  </ul>
+
+  <h2>Result</h2>
+  <p>
+    The platform is live: instructors publish courses with video lectures, students
+    buy through Stripe and are enrolled as soon as they return, watch with tracked
+    per-lecture progress, and admins get a dashboard with sales metrics. The fixes
+    were verified with reproduction suites — the access-control suite went from
+    43/67 to 67/67 passing after the fixes, and a responsive suite passed 208/208
+    checks across five screen widths (360px phones to 1440px desktops).
+  </p>
+
+  <div class="cs-actions">
+    <a class="btn" href="https://lms-seven-gold.vercel.app/" target="_blank" rel="noopener">Live demo ↗</a>
+    <a class="btn btn-ghost" href="https://github.com/randhirsingh77/lms" target="_blank" rel="noopener">Repo ↗</a>
+  </div>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Randhir Singh · New Delhi ·
+      <a href="index.html#projects">All projects</a>
+    </p>
+  </footer>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

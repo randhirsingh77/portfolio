@@ -1,5 +1,6 @@
 // Footer year
-document.getElementById("year").textContent = new Date().getFullYear();
+const yearEl = document.getElementById("year");
+if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 // Highlight the side-nav link for the section currently in view
 const sideLinks = document.querySelectorAll(".side-link");
@@ -27,7 +28,7 @@ const form = document.getElementById("contactForm");
 const status = document.getElementById("formStatus");
 const sendBtn = document.getElementById("sendBtn");
 
-form.addEventListener("submit", async (e) => {
+if (form && status && sendBtn) form.addEventListener("submit", async (e) => {
   e.preventDefault();
   status.textContent = "";
   status.className = "form-status";

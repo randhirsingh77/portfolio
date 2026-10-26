@@ -188,6 +188,50 @@ a:hover { text-decoration: underline; }
 .form-status.ok { color: var(--accent) !important; }
 .form-status.err { color: #e08a8a !important; }
 
+/* ---------- Case-study pages ---------- */
+.cs {
+  position: relative; z-index: 1;
+  max-width: 780px; margin: 0 auto;
+  padding: 3.5rem 1.4rem 3rem;
+}
+.cs-back { margin-bottom: 2.2rem; font-size: .92rem; }
+.cs-kicker {
+  color: var(--accent); font-size: .82rem; font-weight: 600;
+  letter-spacing: .12em; text-transform: uppercase; margin-bottom: .7rem;
+}
+.cs h1 { font-size: 2.1rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; }
+.cs-meta {
+  color: var(--muted); font-size: .85rem;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  margin: .9rem 0 1.6rem;
+}
+.cs h2 { font-size: 1.25rem; font-weight: 600; margin: 2.4rem 0 .8rem; }
+.cs p { color: var(--muted); margin-bottom: 1rem; max-width: 68ch; }
+.cs p strong, .cs li strong { color: var(--text); font-weight: 600; }
+.cs ul { margin: 0 0 1rem 1.2rem; color: var(--muted); }
+.cs li { margin-bottom: .55rem; }
+.cs code {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: .86em; color: var(--text);
+  background: var(--bg-soft); border: 1px solid var(--border);
+  border-radius: 4px; padding: .05em .35em;
+}
+.cs .footer { margin-top: 3rem; }
+
+.cs-actions { display: flex; flex-wrap: wrap; gap: .7rem; margin: 1.4rem 0 .4rem; }
+.btn {
+  display: inline-block;
+  color: var(--accent); border: 1px solid var(--accent); border-radius: 6px;
+  font-size: .92rem; font-weight: 600; padding: .55rem 1.2rem;
+  transition: background .2s ease;
+}
+.btn:hover { background: rgba(111, 211, 167, .1); text-decoration: none; }
+.btn-ghost { color: var(--text); border-color: var(--border); }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); background: transparent; }
+
+/* Case-study link inside project entries */
+.cs-link { font-size: .9rem; font-weight: 500; }
+
 /* ---------- Footer ---------- */
 .footer { border-top: 1px solid var(--border); padding-top: 1.4rem; }
 .footer p { color: var(--muted); font-size: .85rem; }
