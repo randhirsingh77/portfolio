@@ -236,6 +236,17 @@ a:hover { text-decoration: underline; }
 .demo-actions { margin: .7rem 0 .3rem !important; }
 .demo-note { font-size: .82rem !important; color: var(--muted); margin-bottom: .5rem !important; }
 
+/* ---------- Recent activity ---------- */
+.activity-list { list-style: none; margin-top: .4rem; }
+.activity-item {
+  padding: .8rem 0; border-bottom: 1px solid var(--border);
+  font-size: .95rem; color: var(--muted);
+}
+.activity-item:last-child { border-bottom: none; }
+.activity-item a { color: var(--text); font-weight: 500; }
+.activity-item a:hover { color: var(--accent); }
+.activity-when { display: block; font-size: .8rem; color: var(--muted); margin-top: .15rem; }
+
 /* ---------- Footer ---------- */
 .footer { border-top: 1px solid var(--border); padding-top: 1.4rem; }
 .footer p { color: var(--muted); font-size: .85rem; }

@@ -1,0 +1,75 @@
+{
+  "generated_at": "2026-10-26T13:56:36Z",
+  "events": [
+    {
+      "type": "PushEvent",
+      "repo": "sarthi",
+      "text": "Pushed to sarthi: fix docs index line",
+      "url": "https://github.com/randhirsingh77/sarthi/commit/1f3287cad7f44942315dbb5b184246e87353d15a",
+      "at": "2026-10-26T13:56:36Z"
+    },
+    {
+      "type": "PushEvent",
+      "repo": "sarthi",
+      "text": "Pushed to sarthi: clean up docs",
+      "url": "https://github.com/randhirsingh77/sarthi/commit/b64e63e1fc2a8bfd922b53368f82323c551f6cfd",
+      "at": "2026-10-26T13:55:51Z"
+    },
+    {
+      "type": "PushEvent",
+      "repo": "sarthi",
+      "text": "Pushed to sarthi: add features docs",
+      "url": "https://github.com/randhirsingh77/sarthi/commit/f1cab72dab0cb1c89ec23654a9390f29678dd696",
+      "at": "2026-10-26T13:37:26Z"
+    },
+    {
+      "type": "PushEvent",
+      "repo": "lms",
+      "text": "Pushed to lms: fix enrollment roster leak and upload failure handling",
+      "url": "https://github.com/randhirsingh77/lms/commit/7c00f76ad6827464f0dd7fec350f674302441ff6",
+      "at": "2026-10-26T12:04:42Z"
+    },
+    {
+      "type": "PushEvent",
+      "repo": "lms",
+      "text": "Pushed to lms: fix responsive layout and loading state",
+      "url": "https://github.com/randhirsingh77/lms/commit/2a483911c54c2591aa89a1c5a7466f7396eb053f",
+      "at": "2026-10-26T12:04:07Z"
+    },
+    {
+      "type": "PushEvent",
+      "repo": "sarthi",
+      "text": "Pushed to sarthi: add architecture docs",
+      "url": "https://github.com/randhirsingh77/sarthi/commit/17be69860c32f881db018922bc037e4c1786e471",
+      "at": "2026-10-25T13:37:19Z"
+    },
+    {
+      "type": "PushEvent",
+      "repo": "lms",
+      "text": "Pushed to lms: fix access control and upload errors",
+      "url": "https://github.com/randhirsingh77/lms/commit/dbd11f779f5b58f041d82bbb3881c2ce7a3fbdda",
+      "at": "2026-10-24T21:01:45Z"
+    },
+    {
+      "type": "PushEvent",
+      "repo": "lms",
+      "text": "Pushed to lms: add google verification file",
+      "url": "https://github.com/randhirsingh77/lms/commit/5f8f033963772296327af6876ffa9217b8405423",
+      "at": "2026-10-24T20:50:55Z"
+    },
+    {
+      "type": "CreateEvent",
+      "repo": "sarthi",
+      "text": "Created branch main in sarthi",
+      "url": "https://github.com/randhirsingh77/sarthi",
+      "at": "2026-10-24T13:36:45Z"
+    },
+    {
+      "type": "CreateEvent",
+      "repo": "Food-Delivery",
+      "text": "Created branch react-migration in Food-Delivery",
+      "url": "https://github.com/randhirsingh77/Food-Delivery",
+      "at": "2026-10-23T21:29:29Z"
+    }
+  ]
+}

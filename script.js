@@ -56,6 +56,53 @@ if (form && status && sendBtn) form.addEventListener("submit", async (e) => {
   }
 });
 
+// Recent GitHub activity — renders the daily snapshot file (no live API calls)
+const activityList = document.getElementById("activityList");
+if (activityList) {
+  const relTime = (iso) => {
+    const secs = Math.max(1, Math.floor((Date.now() - new Date(iso).getTime()) / 1000));
+    if (secs < 3600) return Math.floor(secs / 60) + "m ago";
+    if (secs < 86400) return Math.floor(secs / 3600) + "h ago";
+    const d = Math.floor(secs / 86400);
+    return d === 1 ? "1 day ago" : d + " days ago";
+  };
+  fetch("github-activity.json")
+    .then((r) => (r.ok ? r.json() : Promise.reject(new Error("no snapshot"))))
+    .then((data) => {
+      const events = (data && data.events) || [];
+      if (!events.length) throw new Error("empty");
+      activityList.innerHTML = "";
+      events.forEach((ev) => {
+        const li = document.createElement("li");
+        li.className = "activity-item";
+        const a = document.createElement("a");
+        a.href = ev.url;
+        a.target = "_blank";
+        a.rel = "noopener";
+        a.textContent = ev.text;
+        const when = document.createElement("span");
+        when.className = "activity-when";
+        when.textContent = relTime(ev.at);
+        li.appendChild(a);
+        li.appendChild(when);
+        activityList.appendChild(li);
+      });
+    })
+    .catch(() => {
+      activityList.innerHTML = "";
+      const li = document.createElement("li");
+      li.className = "activity-item activity-empty";
+      li.textContent = "See my latest work on GitHub: ";
+      const a = document.createElement("a");
+      a.href = "https://github.com/randhirsingh77";
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.textContent = "github.com/randhirsingh77";
+      li.appendChild(a);
+      activityList.appendChild(li);
+    });
+}
+
 // Cursor spotlight (desktop pointers only)
 const spotlight = document.getElementById("spotlight");
 if (spotlight && window.matchMedia("(pointer: fine)").matches &&
