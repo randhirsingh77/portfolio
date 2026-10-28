@@ -189,16 +189,35 @@
       </article>
 
       <article class="entry project">
+        <p class="entry-when">2026</p>
+        <div class="entry-body">
+          <h4>
+            <a href="https://github.com/randhirsingh77/production-rag" target="_blank" rel="noopener">Production RAG — a retrieval system that measures itself <span class="arrow">↗</span></a>
+          </h4>
+          <p>
+            I built a production-grade retrieval system over my own project
+            documentation: hybrid search (vectors + keywords), answers grounded in
+            sources with checked citations, and a plain refusal when the documents
+            don't contain the answer. The part I care about most is the measurement —
+            a 100-question golden set I wrote and verified by hand, nightly
+            evaluation runs, and a dashboard that shows recall, faithfulness and
+            classified failure cases. Real numbers, not a demo that only looks right.
+          </p>
+          <p class="entry-tech">TypeScript · Postgres · pgvector · Gemini · React</p>
+        </div>
+      </article>
+
+      <article class="entry project">
         <p class="entry-when">In design</p>
         <div class="entry-body">
           <h4>
             <a href="https://github.com/randhirsingh77/sarthi" target="_blank" rel="noopener">Sarthi — AI chat for students &amp; job-seekers <span class="arrow">↗</span></a>
           </h4>
           <p>
-            A scoped AI chat app designed for Indian students and job-seekers:
+            An AI chat app I'm designing for Indian students and job-seekers:
             streaming chat over multiple free-tier models, token and rupee cost
             tracking, and modes for resumes, mock interviews and exam-style answers.
-            Currently at design stage — the case study documents the scope and the
+            Currently at design stage — my case study documents the scope and the
             decisions, honestly, before any code exists.
           </p>
           <p class="cs-link"><a href="case-study-sarthi.html">Read the design case study →</a></p>
@@ -303,7 +322,7 @@
 <script src="script.js"></script>
 <!-- Ask Randhir widget: if the deployed Worker URL differs, change ONLY the next line. -->
 <script>window.ASK_RANDHIR_API = "https://ask-randhir.YOUR-CLOUDFLARE-SUBDOMAIN.workers.dev/api/chat";</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/randhirsingh77/ask-randhir@de0ef6fc1717406f9cf2a27a25a16c8e1237c3a8/public/chat.css" />
-<script src="https://cdn.jsdelivr.net/gh/randhirsingh77/ask-randhir@de0ef6fc1717406f9cf2a27a25a16c8e1237c3a8/public/chat.js" data-mode="widget" defer></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/randhirsingh77/ask-randhir@main/public/chat.css" />
+<script src="https://cdn.jsdelivr.net/gh/randhirsingh77/ask-randhir@main/public/chat.js" data-mode="widget" defer></script>
 </body>
 </html>
