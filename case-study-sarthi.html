@@ -33,12 +33,12 @@
 
   <h2>Status, honestly</h2>
   <p>
-    Sarthi is at the <strong>design stage</strong>. The scope, feature list and
-    architecture below are decided and documented in the repository; the application
-    itself is not built yet, so there are no usage numbers or screenshots to show.
-    This page exists because the scoping decisions are the interesting engineering
-    work so far — what to build, what to copy nothing from, and what to deliberately
-    leave out.
+    Sarthi is my <strong>design-stage</strong> project. I have decided the scope,
+    feature list and architecture below and documented them in the repository; I
+    haven't built the application yet, so there are no usage numbers or screenshots
+    to show. I wrote this page because the scoping decisions are the interesting
+    engineering work so far — what I'll build, what I'll copy nothing from, and
+    what I'll deliberately leave out.
   </p>
 
   <h2>The problem</h2>
@@ -47,17 +47,17 @@
     job-seekers ask differently: they prepare for specific exams, practise for
     specific interviews, paste job descriptions they are applying to, and often
     understand a concept best when it is explained in Hinglish. They also care what
-    each conversation costs. Sarthi is scoped around those jobs, not around being
+    each conversation costs. I scoped Sarthi around those jobs, not around being
     another generic chat box.
   </p>
 
-  <h2>How the scope was chosen</h2>
+  <h2>How I chose the scope</h2>
   <p>
-    The reference point is <strong>LibreChat</strong>, a widely used open-source AI
-    chat application (MIT licensed, built on a MERN-style stack). It was studied the
+    My reference point is <strong>LibreChat</strong>, a widely used open-source AI
+    chat application (MIT licensed, built on a MERN-style stack). I studied it the
     way you study any mature product: which features exist, how the architecture is
-    organised, where the complexity lives. Sarthi takes feature and architecture
-    references from it — and nothing else. The code will be original, scoped to a
+    organised, where the complexity lives. I'm taking feature and architecture
+    references from it — and nothing else. The code will be my own, scoped to a
     fraction of LibreChat's surface, because a solo developer shipping a clone of a
     huge project ships nothing.
   </p>
@@ -79,21 +79,22 @@
     <li><strong>Cost-aware routing:</strong> pick the cheapest model that is good enough for the task, using the tracked per-conversation cost.</li>
   </ul>
 
-  <h2>What was deliberately cut</h2>
+  <h2>What I deliberately cut</h2>
   <p>
-    A written cut list keeps a solo project shippable. Out of scope for v1: real
-    retrieval-augmented search over documents, agent/tool frameworks, a code
-    interpreter, image generation, single sign-on, and an admin panel. Each is named
-    in the repository README as a cut, not an oversight — if Sarthi grows, they are
-    the roadmap, in roughly that order of value.
+    I keep a written cut list to keep a solo project shippable. Out of scope for my
+    v1: real retrieval-augmented search over documents, agent/tool frameworks, a
+    code interpreter, image generation, single sign-on, and an admin panel. I named
+    each one in the repository README as a cut, not an oversight — if Sarthi grows,
+    they are my roadmap, in roughly that order of value.
   </p>
 
   <h2>Result so far</h2>
   <p>
-    A scoped, documented design: essentials list, differentiator list, cut list, and
-    an architecture that reuses a proven stack with provider adapters and rupee cost
-    tracking designed in from the start. The build comes next; this page will be
-    updated with what actually shipped — and what changed from the plan — once it does.
+    So far I have a scoped, documented design: an essentials list, a differentiator
+    list, a cut list, and an architecture that reuses a proven stack with provider
+    adapters and rupee cost tracking designed in from the start. The build comes
+    next; I'll update this page with what actually shipped — and what changed from
+    the plan — once it does.
   </p>
 
   <div class="cs-actions">
