@@ -38,7 +38,7 @@
     A food-delivery service is not one app — it is four, sharing one stream of orders.
     Customers browse a menu and order. The kitchen works a queue and controls what is
     in stock. Drivers pick up orders and deliver them. The owner watches sales. Most
-    portfolio food apps stop at the menu and a cart. Foodie was built to run the whole
+    portfolio food apps stop at the menu and a cart. I built Foodie to run the whole
     loop: an order placed by a customer is prepared by the kitchen, picked up by a
     driver, tracked live by the customer, and counted in the owner's dashboard.
   </p>
@@ -47,7 +47,7 @@
   <ul>
     <li><strong>Free hosting only.</strong> The backend runs on Render's free tier, which sleeps when idle and takes up to ~50 seconds to wake. The design has to survive that, not pretend it away.</li>
     <li><strong>No paid services.</strong> There is no budget for SMS OTPs or payment gateways, so sign-up is email/phone + password, and delivery pay is a clearly labelled demo credit.</li>
-    <li><strong>One developer.</strong> Every feature has to be maintainable by one person, which rules out infrastructure that needs babysitting.</li>
+    <li><strong>One developer — me.</strong> Every feature has to be maintainable by me alone, which rules out infrastructure that needs babysitting.</li>
   </ul>
 
   <h2>Architecture</h2>
@@ -74,20 +74,20 @@
 
   <h2>What broke</h2>
   <ul>
-    <li><strong>A header that grew until it ate the page.</strong> A script measured the fixed header's height and wrote it into a CSS variable that the header's own minimum height depended on. Each measurement made the header 1px taller, which triggered another measurement — about +1px per animation frame, forever. The fix was to delete the whole measuring mechanism and anchor overlays to the header's real bottom edge at the moment they open.</li>
+    <li><strong>A header that grew until it ate the page.</strong> A script measured the fixed header's height and wrote it into a CSS variable that the header's own minimum height depended on. Each measurement made the header 1px taller, which triggered another measurement — about +1px per animation frame, forever. I fixed it by deleting the whole measuring mechanism and anchoring overlays to the header's real bottom edge at the moment they open.</li>
     <li><strong>The search panel hiding behind the header on phones.</strong> Same root cause family: the panel was positioned from a guessed header height, but on narrow phones the header wraps to two rows and is taller than the guess. Positioning from the measured edge, at open time, fixed it for every width.</li>
-    <li><strong>Live tests that "failed" while everything worked.</strong> The first full live test run reported ten failed checks — all on fixed short waits, because the sleeping backend's first response took ~50 seconds. Checking the end state in the database proved every step had actually completed: the order went through kitchen and driver to delivered, and the driver was credited and rated. Lesson: on free hosting, judge a flow by its end state, not its first paint.</li>
+    <li><strong>Live tests that "failed" while everything worked.</strong> My first full live test run reported ten failed checks — all on fixed short waits, because the sleeping backend's first response took ~50 seconds. When I checked the end state in the database, every step had actually completed: the order went through kitchen and driver to delivered, and the driver was credited and rated. Lesson I took from it: on free hosting, judge a flow by its end state, not its first paint.</li>
   </ul>
 
   <h2>Result</h2>
   <p>
     Foodie is live and works end to end: sign up, order, watch the kitchen work the
     queue, track the rider on a map, get delivered, rate the driver — while the owner
-    sees the sale in analytics. The backend carries an automated smoke suite (41
-    checks) that boots the real app against an in-memory database and verifies the
-    money maths exactly — for example Pasta ×3 with FOODIE50 must total ₹650, not
-    approximately. A keep-alive ping every 14 minutes during the day keeps the free
-    backend awake inside its free instance hours.
+    sees the sale in analytics. I keep the backend honest with an automated smoke
+    suite (41 checks) that boots the real app against an in-memory database and
+    verifies the money maths exactly — for example Pasta ×3 with FOODIE50 must total
+    ₹650, not approximately. A keep-alive ping every 14 minutes during the day keeps
+    the free backend awake inside its free instance hours.
   </p>
 
   <div class="cs-actions">
